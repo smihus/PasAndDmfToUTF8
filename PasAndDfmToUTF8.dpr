@@ -2,7 +2,7 @@ program PasAndDfmToUTF8;
 
 uses
   Vcl.Forms,
-  main in 'main.pas' {fmPasAndDfmtoUTF8};
+  main in 'src\main.pas' {fmPasAndDfmtoUTF8};
 
 {$R *.res}
 

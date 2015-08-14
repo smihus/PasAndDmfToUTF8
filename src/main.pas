@@ -1,4 +1,4 @@
-unit main;
+п»їunit main;
 
 interface
 
@@ -69,7 +69,7 @@ procedure TfmPasAndDfmtoUTF8.bnConvertClick(Sender: TObject);
 begin
   GetFileLists;
   ConvertFiles;
-  ShowMessage('Готово!');
+  ShowMessage('Р“РѕС‚РѕРІРѕ!');
 end;
 
 procedure TfmPasAndDfmtoUTF8.FormCreate(Sender: TObject);
