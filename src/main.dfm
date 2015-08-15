@@ -3,7 +3,7 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   Top = 0
   ActiveControl = bnSelectDir
   BorderStyle = bsDialog
-  Caption = 'Pas and Dfm files to UTF-8'
+  Caption = 'Files to UTF-8'
   ClientHeight = 170
   ClientWidth = 439
   Color = clBtnFace

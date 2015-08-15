@@ -1,4 +1,4 @@
-program PasAndDfmToUTF8;
+program FilesToUTF8;
 
 uses
   Vcl.Forms,

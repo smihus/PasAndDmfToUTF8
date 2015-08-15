@@ -3,7 +3,7 @@
         <ProjectGuid>{4DB3F395-F9F3-4B1E-B86A-C53283426B20}</ProjectGuid>
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
-        <MainSource>PasAndDfmToUTF8.dpr</MainSource>
+        <MainSource>FilesToUTF8.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -161,7 +161,7 @@
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Source>
-                    <Source Name="MainSource">PasAndDfmToUTF8.dpr</Source>
+                    <Source Name="MainSource">FilesToUTF8.dpr</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k170.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
