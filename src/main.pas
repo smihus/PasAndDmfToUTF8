@@ -12,6 +12,10 @@ type
     eDir: TEdit;
     bnSelectDir: TButton;
     bnConvert: TButton;
+    cbRecursive: TCheckBox;
+    lDirPath: TLabel;
+    ePattern: TEdit;
+    lFilePattern: TLabel;
     procedure bnSelectDirClick(Sender: TObject);
     procedure bnConvertClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -64,8 +68,14 @@ end;
 procedure TfmPasAndDfmtoUTF8.bnConvertClick(Sender: TObject);
 var
   FileList: TStringDynArray;
+  SO: TSearchOption;
 begin
-  FileList := GetFileList(SourceDir, '*.pas, *.dfm', TSearchOption.soAllDirectories);
+  if cbRecursive.Checked then
+    SO := TSearchOption.soAllDirectories
+  else
+    SO := TSearchOption.soTopDirectoryOnly;
+
+  FileList := GetFileList(SourceDir, ePattern.Text, SO);
   ConvertFiles(FileList);
   ShowMessage('Готово!');
 end;

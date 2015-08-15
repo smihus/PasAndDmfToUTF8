@@ -4,7 +4,7 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   ActiveControl = bnSelectDir
   BorderStyle = bsDialog
   Caption = 'Pas and Dfm files to UTF-8'
-  ClientHeight = 80
+  ClientHeight = 170
   ClientWidth = 439
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,17 +18,30 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object eDir: TEdit
-    Left = 4
+  object lDirPath: TLabel
+    Left = 8
     Top = 8
-    Width = 401
+    Width = 71
+    Height = 13
+    Caption = #1055#1091#1090#1100' '#1082' '#1087#1072#1087#1082#1077':'
+  end
+  object lFilePattern: TLabel
+    Left = 8
+    Top = 80
+    Width = 145
+    Height = 13
+    Caption = #1064#1072#1073#1083#1086#1085' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072' '#1092#1072#1081#1083#1086#1074':'
+  end
+  object eDir: TEdit
+    Left = 8
+    Top = 24
+    Width = 392
     Height = 21
     TabOrder = 0
-    Text = 'eDir'
   end
   object bnSelectDir: TButton
-    Left = 408
-    Top = 8
+    Left = 406
+    Top = 24
     Width = 25
     Height = 21
     Caption = '...'
@@ -36,12 +49,30 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
     OnClick = bnSelectDirClick
   end
   object bnConvert: TButton
-    Left = 4
-    Top = 35
+    Left = 2
+    Top = 124
     Width = 429
     Height = 38
     Caption = #1050#1086#1085#1074#1077#1088#1090#1080#1088#1086#1074#1072#1090#1100
     TabOrder = 2
     OnClick = bnConvertClick
+  end
+  object cbRecursive: TCheckBox
+    Left = 8
+    Top = 51
+    Width = 423
+    Height = 17
+    Caption = #1074#1082#1083#1102#1095#1072#1103' '#1087#1086#1076#1087#1072#1087#1082#1080
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+  end
+  object ePattern: TEdit
+    Left = 8
+    Top = 97
+    Width = 423
+    Height = 21
+    TabOrder = 4
+    Text = '*.pas, *.dfm'
   end
 end
