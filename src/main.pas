@@ -22,7 +22,7 @@ type
     procedure SetDir(const Value: String);
     function GetDir: String;
     procedure GetFileLists;
-    procedure ConvertFiles;
+    procedure ConvertFiles(const FilePathList: TStringDynArray);
     procedure ConvertFile(const FilePath: String);
   public
     property SourceDir: String read GetDir write SetDir;
@@ -54,21 +54,19 @@ begin
     FSL.SaveToFile(FilePath, TEncoding.UTF8);
 end;
 
-procedure TfmPasAndDfmtoUTF8.ConvertFiles;
+procedure TfmPasAndDfmtoUTF8.ConvertFiles(const FilePathList: TStringDynArray);
 var
   i: Integer;
 begin
-  for i := 0 to Length(FPasFileList)-1 do
-    ConvertFile(FPasFileList[i]);
-
-  for i := 0 to Length(FDfmFileList)-1 do
-    ConvertFile(FDfmFileList[i]);
+  for i := 0 to Length(FilePathList)-1 do
+    ConvertFile(FilePathList[i]);
 end;
 
 procedure TfmPasAndDfmtoUTF8.bnConvertClick(Sender: TObject);
 begin
   GetFileLists;
-  ConvertFiles;
+  ConvertFiles(FPasFileList);
+  ConvertFiles(FDfmFileList);
   ShowMessage('Готово!');
 end;
 
