@@ -42,8 +42,8 @@ var
   Dir: string;
 begin
   Dir := SourceDir;
-  SelectDirectory(Dir, [], 0);
-  SourceDir := Dir;
+  if SelectDirectory(Dir, [], 0) then
+    SourceDir := Dir;
 end;
 
 procedure TfmPasAndDfmtoUTF8.ConvertFile(const FilePath: String);
