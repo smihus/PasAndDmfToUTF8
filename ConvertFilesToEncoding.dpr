@@ -1,4 +1,4 @@
-program FilesToUTF8;
+program ConvertFilesToEncoding;
 
 uses
   Vcl.Forms,

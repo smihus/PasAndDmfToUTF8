@@ -30,6 +30,7 @@ type
     function GetFileList(const DirPath: string; const SearchPattern: string; const SearchOption: TSearchOption): TStringDynArray;
     procedure ConvertFiles(const FilePathList: TStringDynArray; const Encoding: TEncoding);
     procedure ConvertFile(const FilePath: string; const Encoding: TEncoding);
+    function CheckAndCorrectPath(var DirPath: string): Boolean;
   public
     property SourceDir: String read GetDir write SetDir;
   end;
@@ -40,16 +41,20 @@ var
 implementation
 
 uses
-  FileCtrl, System.StrUtils;
+  FileCtrl, System.StrUtils, System.UITypes;
 {$R *.dfm}
 
 procedure TfmPasAndDfmtoUTF8.bnSelectDirClick(Sender: TObject);
 var
-  Dir: string;
+  TmpDir: string;
 begin
-  Dir := SourceDir;
-  if SelectDirectory(Dir, [], 0) then
-    SourceDir := Dir;
+  TmpDir := SourceDir;
+
+  if not CheckAndCorrectPath(TmpDir) then
+    TmpDir := GetCurrentDir;
+
+  if SelectDirectory(TmpDir, [], 0) then
+    SourceDir := TmpDir;
 end;
 
 procedure TfmPasAndDfmtoUTF8.ConvertFile(const FilePath: string; const Encoding: TEncoding);
@@ -58,6 +63,17 @@ begin
 
   if FSL.Encoding <> Encoding then
     FSL.SaveToFile(FilePath, Encoding);
+end;
+
+function TfmPasAndDfmtoUTF8.CheckAndCorrectPath(var DirPath: string): Boolean;
+begin
+  Result := True;
+
+  if not TDirectory.Exists(DirPath) then
+    if FileExists(DirPath) then
+      DirPath := ExtractFilePath(DirPath)
+    else
+      Result := False;
 end;
 
 procedure TfmPasAndDfmtoUTF8.ConvertFiles(const FilePathList: TStringDynArray; const Encoding: TEncoding);
@@ -72,11 +88,22 @@ procedure TfmPasAndDfmtoUTF8.bnConvertClick(Sender: TObject);
 var
   FileList: TStringDynArray;
   SO: TSearchOption;
+  TmpDir: string;
 begin
   if cbRecursive.Checked then
     SO := TSearchOption.soAllDirectories
   else
     SO := TSearchOption.soTopDirectoryOnly;
+
+  TmpDir := SourceDir;
+
+  if CheckAndCorrectPath(TmpDir) then
+    SourceDir := TmpDir
+  else
+  begin
+    MessageDlg('Указан несуществующий путь!', mtError, [mbOK], 0);
+    Exit;
+  end;
 
   FileList := GetFileList(SourceDir, ePattern.Text, SO);
   ConvertFiles(FileList, Encodings[cbEncoding.ItemIndex]);
