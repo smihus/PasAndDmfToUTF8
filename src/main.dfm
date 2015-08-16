@@ -4,7 +4,7 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   ActiveControl = bnSelectDir
   BorderStyle = bsDialog
   Caption = 'Files to UTF-8'
-  ClientHeight = 150
+  ClientHeight = 184
   ClientWidth = 439
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,6 +32,13 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
     Height = 13
     Caption = #1064#1072#1073#1083#1086#1085' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072' '#1092#1072#1081#1083#1086#1074':'
   end
+  object lEncoding: TLabel
+    Left = 8
+    Top = 115
+    Width = 75
+    Height = 13
+    Caption = #1050#1086#1076#1080#1088#1086#1074#1072#1090#1100' '#1074':'
+  end
   object eDir: TEdit
     Left = 8
     Top = 24
@@ -50,7 +57,7 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   end
   object bnConvert: TButton
     Left = 8
-    Top = 104
+    Top = 139
     Width = 423
     Height = 38
     Caption = #1050#1086#1085#1074#1077#1088#1090#1080#1088#1086#1074#1072#1090#1100
@@ -74,5 +81,13 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
     Height = 21
     TabOrder = 4
     Text = '*.pas, *.dfm'
+  end
+  object cbEncoding: TComboBox
+    Left = 159
+    Top = 112
+    Width = 272
+    Height = 21
+    TabOrder = 5
+    Text = 'cbEncoding'
   end
 end

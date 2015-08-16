@@ -16,12 +16,15 @@ type
     lDirPath: TLabel;
     ePattern: TEdit;
     lFilePattern: TLabel;
+    cbEncoding: TComboBox;
+    lEncoding: TLabel;
     procedure bnSelectDirClick(Sender: TObject);
     procedure bnConvertClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
     FSL: TStringList;
+    Encodings: array[0..5] of TEncoding;
     procedure SetDir(const Value: String);
     function GetDir: String;
     function GetFileList(const DirPath: string; const SearchPattern: string; const SearchOption: TSearchOption): TStringDynArray;
@@ -76,7 +79,7 @@ begin
     SO := TSearchOption.soTopDirectoryOnly;
 
   FileList := GetFileList(SourceDir, ePattern.Text, SO);
-  ConvertFiles(FileList, TEncoding.UTF8);
+  ConvertFiles(FileList, Encodings[cbEncoding.ItemIndex]);
   ShowMessage('Готово!');
 end;
 
@@ -84,6 +87,23 @@ procedure TfmPasAndDfmtoUTF8.FormCreate(Sender: TObject);
 begin
   SourceDir := GetCurrentDir;
   FSL := TStringList.Create;
+
+  with cbEncoding, Items do begin
+    Add('UTF8');
+    Add('UTF7');
+    Add('Unicode');
+    Add('BigEndianUnicode');
+    Add('ASCII');
+    Add('ANSI');
+    ItemIndex := 0;
+  end;
+
+  Encodings[0]:= TEncoding.UTF8;
+  Encodings[1]:= TEncoding.UTF7;
+  Encodings[2]:= TEncoding.Unicode;
+  Encodings[3]:= TEncoding.BigEndianUnicode;
+  Encodings[4]:= TEncoding.ASCII;
+  Encodings[5]:= TEncoding.ANSI;
 end;
 
 procedure TfmPasAndDfmtoUTF8.FormDestroy(Sender: TObject);
