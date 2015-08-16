@@ -25,8 +25,8 @@ type
     procedure SetDir(const Value: String);
     function GetDir: String;
     function GetFileList(const DirPath: string; const SearchPattern: string; const SearchOption: TSearchOption): TStringDynArray;
-    procedure ConvertFiles(const FilePathList: TStringDynArray);
-    procedure ConvertFile(const FilePath: String);
+    procedure ConvertFiles(const FilePathList: TStringDynArray; const Encoding: TEncoding);
+    procedure ConvertFile(const FilePath: string; const Encoding: TEncoding);
   public
     property SourceDir: String read GetDir write SetDir;
   end;
@@ -49,20 +49,20 @@ begin
     SourceDir := Dir;
 end;
 
-procedure TfmPasAndDfmtoUTF8.ConvertFile(const FilePath: String);
+procedure TfmPasAndDfmtoUTF8.ConvertFile(const FilePath: string; const Encoding: TEncoding);
 begin
   FSL.LoadFromFile(FilePath);
 
-  if FSL.Encoding <> TEncoding.UTF8 then
-    FSL.SaveToFile(FilePath, TEncoding.UTF8);
+  if FSL.Encoding <> Encoding then
+    FSL.SaveToFile(FilePath, Encoding);
 end;
 
-procedure TfmPasAndDfmtoUTF8.ConvertFiles(const FilePathList: TStringDynArray);
+procedure TfmPasAndDfmtoUTF8.ConvertFiles(const FilePathList: TStringDynArray; const Encoding: TEncoding);
 var
   i: Integer;
 begin
   for i := 0 to Length(FilePathList)-1 do
-    ConvertFile(FilePathList[i]);
+    ConvertFile(FilePathList[i], Encoding);
 end;
 
 procedure TfmPasAndDfmtoUTF8.bnConvertClick(Sender: TObject);
@@ -76,7 +76,7 @@ begin
     SO := TSearchOption.soTopDirectoryOnly;
 
   FileList := GetFileList(SourceDir, ePattern.Text, SO);
-  ConvertFiles(FileList);
+  ConvertFiles(FileList, TEncoding.UTF8);
   ShowMessage('Готово!');
 end;
 

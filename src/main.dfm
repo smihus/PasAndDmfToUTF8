@@ -4,7 +4,7 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
   ActiveControl = bnSelectDir
   BorderStyle = bsDialog
   Caption = 'Files to UTF-8'
-  ClientHeight = 170
+  ClientHeight = 150
   ClientWidth = 439
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -49,9 +49,9 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
     OnClick = bnSelectDirClick
   end
   object bnConvert: TButton
-    Left = 2
-    Top = 124
-    Width = 429
+    Left = 8
+    Top = 104
+    Width = 423
     Height = 38
     Caption = #1050#1086#1085#1074#1077#1088#1090#1080#1088#1086#1074#1072#1090#1100
     TabOrder = 2
@@ -68,9 +68,9 @@ object fmPasAndDfmtoUTF8: TfmPasAndDfmtoUTF8
     TabOrder = 3
   end
   object ePattern: TEdit
-    Left = 8
-    Top = 97
-    Width = 423
+    Left = 159
+    Top = 77
+    Width = 272
     Height = 21
     TabOrder = 4
     Text = '*.pas, *.dfm'
